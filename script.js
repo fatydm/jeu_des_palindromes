@@ -9,14 +9,14 @@ let inputUser = prompt('Entrez une date au format : jj/mm/aaaa')
 
 const isValidDate = (dateString) => {
 
-    let dateSplit = dateString.split('/')
+    let dateSplit = dateString.split("/")
 
     if (dateSplit.length !== 3) {
         alert('Utilisez le format jj/mm/aaaa.');
         return;
     }
     console.log(dateSplit);
-    
+
     let dayInput = parseInt(dateSplit[0])
     console.log("le jour", dayInput);
 
@@ -26,7 +26,7 @@ const isValidDate = (dateString) => {
     let yearInput = parseInt(dateSplit[2])
     console.log("l'année", yearInput);
 
-    if (monthInput < 1 || monthInput > 12) { alert(`Rentrez un mois valide, le mois ${monthInput} n'existe pas.`); return}
+    if (monthInput < 1 || monthInput > 12) { alert(`Rentrez un mois valide, le mois ${monthInput} n'existe pas.`); return }
     if (yearInput < 1000 || yearInput > 9999) { alert('Rentrez une année valide'); return }
 
     let maxDays = maxDaysInMonth(monthInput)
@@ -43,7 +43,7 @@ const maxDaysInMonth = (mois, annee) => {
     const months30 = [4, 6, 9, 11]
 
     if (months31.includes(mois)) { return 31 }
-    else if (months30.includes(mois)) { return 30}
+    else if (months30.includes(mois)) { return 30 }
     else if (mois == 2) { return anneeBissextile(annee) ? 29 : 28 }
     return false
 }
@@ -51,22 +51,57 @@ isValidDate(inputUser)
 
 
 // ÉTAPE 2 : Vérifier si une date est un palindrome
-let date = inputUser
+
 const isPalindrome = (date) => {
-    console.log('JE SUIS LA', date)
-    
+
     const dateWithoutSlash = date.split("/").join("")
-    console.log(dateWithoutSlash); 
-    if (dateWithoutSlash === dateWithoutSlash.reverse()) { return true} else { false}
+    console.log('date sans slash', dateWithoutSlash);
+
+    const reversedDate = dateWithoutSlash.split("").reverse().join("")
+    console.log('🔄 Date inversée :', reversedDate);
+
+    return (dateWithoutSlash === reversedDate)
 }
 
-const isDatePalindrome = (date) => {
-    if (isValidDate(date) == false) { return false} else { true}
-    
-    return isDatePalindrome(date)
-} 
+const isDatePalindrome = (inputUser) => {
+    console.log('🚀 Date entrée par l\'utilisateur :', inputUser)
+
+    if (isPalindrome(inputUser)) {
+        console.log("C'est un palindrome")
+    } else {
+        console.log("Ce n'est pas un palindrome")
+    }
+}
+isDatePalindrome(inputUser)
+
+
+
+// Étape 3 : Trouver les prochaines dates palindrome
+
+
+const getTodayDate = () => {
+    const date = new Date();
+    return date; 
+}
 
 
 // const getNextPalindromes = (x) => {
+//     let palindromeList = []
+//     let todayDate = getTodayDate()
 
+//             // tant que la taille du palindromeList est < à x
+//     while(palindromeList.length < x) { 
+//             // j'ajoute un jour à la date courante
+//         todayDate.setDate(todayDate.getDate() + 1)}
+    
+//             // Je convertis la date au format jj/mm/aaaa
+//         let formatDate = todayDate.toLocaleDateString('fr-FR')
+
+//             // Si la date est un palindrome, il s'ajoute à la liste
+//         if (isDatePalindrome(formatDate)) {
+//             palindromeList.push(formatDate)
+//         }
+//         console.log(palindromeList);
+//     return palindromeList
+    
 // }
