@@ -1,15 +1,25 @@
 Étape 1
 Créer une fonction isValidDate qui prend en paramètre une date en string et determine si elle est valide. 
-Pour qu'une date soit valide, il faut qu'elle existe et qu'elle soit au format dd/mm/aaaa.
+    - Je créé une fonction : const isValidDate = (dateString) => 
 
-Tout au long de l’exercice, on supposera des années supérieures à 999 et inférieures 9999 - autrement dit, 
-l’année sera systématiquement représentée sur 4 caractères.
+    Pour qu'une date soit valide, il faut qu'elle existe et qu'elle soit au format dd/mm/aaaa.
+    - si ma chaine ma caractère est < à 10 (10 équivaut à la totalité de mon format.) Je renvoie false
+
+    Tout au long de l’exercice, on supposera des années supérieures à 999 et inférieures 9999 - autrement dit, 
+    l’année sera systématiquement représentée sur 4 caractères.
+    - si l'année est < à 999 ou si l'année est > à 9999 alors je retourne false
+            if (year < 999 || year > 9999) {
+                return false 
+            }
 
 isValidDate("03/04/2001") // true
 isValidDate("03/14/2001") // false car 14 n'est pas un mois valide
 Vous aurez probablement besoin de créer une autre fonction maxDaysInMonth pour vous assurer que le nombre de 
 jours par mois est valide (ex: le 31/11 n’est pas valide, le mois de novembre ne contient que 30 jours)
-
+    - Je créé une fonction maxDaysInMonth dans cette fonction, je créé une variable dans laquelle je mets un tableau
+    avec le nombre de jours par mois
+    - Je fais une instruction pour savoir si mon année est bissextille ou pas
+    if (annee % 4 === 0 && annee % 100  !== 0) || (annee % 400 === 0)
 
 
 Étape 2

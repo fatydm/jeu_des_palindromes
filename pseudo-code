@@ -1,0 +1,84 @@
+Étape 1 : Vérifier si une date est valide
+Début fonction isValidDate(date)
+    Séparer la date en trois parties : jour, mois, année en utilisant le caractère "/"
+    
+    Si la séparation ne donne pas exactement trois parties
+        Retourner faux
+    Fin Si
+
+    Convertir jour, mois et année en nombres entiers
+
+    Si mois est inférieur à 1 ou supérieur à 12
+        Retourner faux
+    Fin Si
+
+    Définir une fonction maxDaysInMonth(mois, année)
+        Si mois est dans [1, 3, 5, 7, 8, 10, 12], retourner 31
+        Sinon, si mois est dans [4, 6, 9, 11], retourner 30
+        Sinon, si mois est 2 (février)
+            Si année est bissextile, retourner 29
+            Sinon, retourner 28
+        Fin Si
+    Fin fonction
+
+    Si jour est inférieur à 1 ou supérieur à maxDaysInMonth(mois, année)
+        Retourner faux
+    Fin Si
+
+    Retourner vrai
+Fin fonction
+
+
+
+Étape 2 : Vérifier si une date est un palindrome
+
+Début fonction isPalindrome(date)
+    Supprimer les caractères "/" de la date
+    Vérifier si la date sans "/" est égale à son inverse
+    Retourner vrai si oui, faux sinon
+Fin fonction
+
+Début fonction isDatePalindrome(date)
+    Si isValidDate(date) est faux
+        Retourner faux
+    Fin Si
+
+    Retourner isPalindrome(date)
+Fin fonction
+
+
+
+
+Étape 3 : Trouver les prochaines dates palindrome
+
+Début fonction getNextPalindromes(x)
+    Définir une liste vide palindromes
+    Définir une date courante égale à aujourd’hui
+
+    Tant que la taille de palindromes est inférieure à x
+        Ajouter 1 jour à la date courante
+        Convertir la date en format "dd/mm/yyyy"
+        
+        Si isDatePalindrome(date)
+            Ajouter la date à palindromes
+        Fin Si
+    Fin Tant que
+
+    Retourner la liste palindromes
+Fin fonction
+
+Étape 4 : Refactorisation de isPalindrome
+
+Début fonction isPalindrome(texte)
+    Comparer texte avec son inverse
+    Retourner vrai si c'est un palindrome, sinon faux
+Fin fonction
+
+Début fonction isDatePalindrome(date)
+    Si isValidDate(date) est faux
+        Retourner faux
+    Fin Si
+
+    Supprimer les "/" de la date
+    Retourner isPalindrome(date sans "/")
+Fin fonction
